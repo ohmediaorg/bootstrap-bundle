@@ -1,0 +1,8 @@
+{% for flash_type, bootstrap_class in flash_map %}
+  {% if flash_type matches '/^\\d+$/' %}
+    {% set flash_type = bootstrap_class %}
+  {% endif %}
+  {% for message in app.flashes(flash_type) %}
+    {% block message %}{% endblock %}
+  {% endfor %}
+{% endfor %}

@@ -1,0 +1,22 @@
+services:
+    OHMedia\BootstrapBundle\Twig\Extension\AccordionExtension:
+        tags: ["twig.extension"]
+
+    OHMedia\BootstrapBundle\Twig\Extension\FlashExtension:
+        tags: ["twig.extension"]
+
+    OHMedia\BootstrapBundle\Twig\Extension\BreadcrumbsExtension:
+        tags: ["twig.extension"]
+
+    OHMedia\BootstrapBundle\Twig\Extension\NavExtension:
+        arguments: ["@security.logout_url_generator"]
+        tags: ["twig.extension"]
+
+    OHMedia\BootstrapBundle\Twig\Extension\PaginationExtension:
+        tags: ["twig.extension"]
+
+    OHMedia\BootstrapBundle\Service\BreadcrumbNodeTransformer:
+        autowire: true
+
+    OHMedia\BootstrapBundle\Service\Paginator:
+        autowire: true

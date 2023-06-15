@@ -1,0 +1,21 @@
+{
+    "name": "ohmediaorg/bootstrap-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony BootstrapBundle",
+    "keywords": ["Bootstrap"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Justin Hoffman",
+            "email": "justin@ohmedia.ca"
+        }
+    ],
+    "require": {
+        "ohmediaorg/utility-bundle": "dev-main",
+        "php": "^7.2",
+        "symfony/framework-bundle": "5.4.*"
+    },
+    "autoload": {
+        "psr-4": { "OHMedia\\BootstrapBundle\\": "src/" }
+    }
+}

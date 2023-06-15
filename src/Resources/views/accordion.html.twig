@@ -1,0 +1,36 @@
+{% set uniq_id = uniq() %}
+
+{% set accordion_id = 'accordion-' ~ uniq_id %}
+
+<div class="accordion {{ accordion.flush ? 'accordion-flush' : '' }}" id="{{ accordion_id }}">
+{% for item in accordion.items %}
+  {% set open = accordion.firstOpen and loop.index == 1 %}
+  {% set item_id = uniq_id ~ '-' ~ loop.index %}
+  {% set header_id = 'accordion-header-' ~ item_id %}
+  {% set body_id = 'accordion-body-' ~ item_id %}
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="{{ header_id }}">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#{{ body_id }}"
+        {% if open %}
+        aria-expanded="true"
+        {% endif %}
+        aria-controls="{{ body_id }}"
+      >{{ item.header|raw }}</button>
+    </h2>
+    <div
+      id="{{ body_id }}"
+      class="accordion-collapse collapse {{ open ? 'show' : '' }}"
+      aria-labelledby="{{ header_id }}"
+      {% if not accordion.alwaysOpen %}
+      data-bs-parent="#{{ accordion_id }}"
+      {% endif %}
+    >
+      <div class="accordion-body">{{ item.body|raw }}</div>
+    </div>
+  </div>
+{% endfor %}
+</div>
