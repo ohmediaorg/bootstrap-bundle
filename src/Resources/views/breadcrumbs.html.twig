@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    {% for breadcrumb in breadcrumb_trail.breadcrumbs %}
+    {% for breadcrumb in breadcrumbs %}
     {% if loop.last %}
     <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.text }}</li>
     {% else %}

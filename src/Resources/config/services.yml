@@ -6,6 +6,7 @@ services:
         tags: ["twig.extension"]
 
     OHMedia\BootstrapBundle\Twig\Extension\BreadcrumbsExtension:
+        autowire: true
         tags: ["twig.extension"]
 
     OHMedia\BootstrapBundle\Twig\Extension\NavExtension:
@@ -14,9 +15,6 @@ services:
 
     OHMedia\BootstrapBundle\Twig\Extension\PaginationExtension:
         tags: ["twig.extension"]
-
-    OHMedia\BootstrapBundle\Service\BreadcrumbNodeTransformer:
-        autowire: true
 
     OHMedia\BootstrapBundle\Service\Paginator:
         autowire: true
