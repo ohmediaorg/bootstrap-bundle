@@ -30,7 +30,7 @@ class BreadcrumbsExtension extends AbstractExtension
 
     public function breadcrumb(string $text, string $route = '', array $parameters = []): Breadcrumb
     {
-        $href = $this->urlGenerator->generate($route, $parameters);
+        $href = $route ? $this->urlGenerator->generate($route, $parameters) : '';
 
         return new Breadcrumb($text, $href);
     }
