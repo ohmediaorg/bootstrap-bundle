@@ -21,6 +21,10 @@ class PaginationExtension extends AbstractExtension
 
     public function pagination(Environment $twig, Pagination $pagination, string $label = '')
     {
+        if (!$pagination->getPages()) {
+            return '';
+        }
+
         return $twig->render('@OHMediaBootstrap/pagination.html.twig', [
             'pagination' => $pagination,
             'label' => $label,
