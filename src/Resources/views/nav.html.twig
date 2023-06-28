@@ -4,6 +4,7 @@
 
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle {{ dropdown_active ? 'active' : '' }}" href="{{ dropdown.href }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if dropdown.icon %}{{ bootstrap_icon(dropdown.icon) }}{% endif %}
         {{ dropdown.text }}
       </a>
       <ul class="dropdown-menu">
@@ -43,6 +44,7 @@
       {% if active %}aria-current="page"{% endif %}
     {% endif %}
   >
+    {% if link.icon %}{{ bootstrap_icon(link.icon) }}{% endif %}
     {{ link.text }}
   </a>
 {% endmacro %}

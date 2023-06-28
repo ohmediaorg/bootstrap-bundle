@@ -6,6 +6,7 @@ class NavLink implements NavItemInterface, NavDropdownItemInterface
 {
     private bool $disabled = false;
     private string $href = '';
+    private string $icon = '';
     private string $text;
 
     public function __construct(string $text)
@@ -35,6 +36,18 @@ class NavLink implements NavItemInterface, NavDropdownItemInterface
     public function getHref(): string
     {
         return $this->href;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getIcon(): string
+    {
+        return $this->icon;
     }
 
     public function getText(): string
