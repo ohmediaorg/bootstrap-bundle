@@ -8,7 +8,7 @@ use Twig\TwigFunction;
 
 class FlashExtension extends AbstractExtension
 {
-    const FLASH_MAP = [
+    public const FLASH_MAP = [
         'primary',
         'secondary',
         'success',

@@ -19,8 +19,7 @@ class Paginator
         QueryBuilder $queryBuilder,
         int $limit,
         bool $fetchJoinCollection = true
-    ): Pagination
-    {
+    ): Pagination {
         $page = $this->requestStack
             ->getCurrentRequest()
             ->query->get('p', 1);

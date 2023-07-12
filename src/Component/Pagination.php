@@ -21,8 +21,7 @@ class Pagination
         int $limit,
         int $page,
         bool $fetchJoinCollection = true
-    )
-    {
+    ) {
         $this->page = max(1, $page);
 
         $this->limit = max(1, $limit);
