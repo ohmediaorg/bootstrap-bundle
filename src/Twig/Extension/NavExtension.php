@@ -48,7 +48,7 @@ class NavExtension extends AbstractExtension
         if ($showLogout) {
             try {
                 $logoutPath = $this->logoutUrlGenerator->getLogoutPath();
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 $logoutPath = null;
             }
         }

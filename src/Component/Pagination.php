@@ -2,8 +2,8 @@
 
 namespace OHMedia\BootstrapBundle\Component;
 
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class Pagination
 {
