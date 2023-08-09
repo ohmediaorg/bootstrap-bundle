@@ -15,11 +15,11 @@ class AccordionItem implements AccordionItemInterface
 
     public function getBody(): string
     {
-        return $body;
+        return $this->body;
     }
 
     public function getHeader(): string
     {
-        return $header;
+        return $this->header;
     }
 }
