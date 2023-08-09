@@ -11,7 +11,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="{{ header_id }}">
       <button
-        class="accordion-button"
+        class="accordion-button {{ not open ? 'collapsed' : '' }}"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#{{ body_id }}"
