@@ -50,7 +50,7 @@
 {% set current_route = app.request.attributes.get('_route') %}
 {% set current_route_params = app.request.attributes.get('_route_params') %}
 
-{% set current_path = path(current_route, current_route_params) %}
+{% set current_path = current_route ? path(current_route, current_route_params) : '' %}
 
 <ul class="{{ class_name }}">
   {% for item in nav.items %}
