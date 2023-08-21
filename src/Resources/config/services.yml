@@ -1,19 +1,19 @@
 services:
-    OHMedia\BootstrapBundle\Twig\Extension\AccordionExtension:
+    OHMedia\BootstrapBundle\Twig\AccordionExtension:
         tags: ["twig.extension"]
 
-    OHMedia\BootstrapBundle\Twig\Extension\FlashExtension:
+    OHMedia\BootstrapBundle\Twig\FlashExtension:
         tags: ["twig.extension"]
 
-    OHMedia\BootstrapBundle\Twig\Extension\BreadcrumbsExtension:
+    OHMedia\BootstrapBundle\Twig\BreadcrumbsExtension:
         autowire: true
         tags: ["twig.extension"]
 
-    OHMedia\BootstrapBundle\Twig\Extension\NavExtension:
+    OHMedia\BootstrapBundle\Twig\NavExtension:
         arguments: ["@security.logout_url_generator"]
         tags: ["twig.extension"]
 
-    OHMedia\BootstrapBundle\Twig\Extension\PaginationExtension:
+    OHMedia\BootstrapBundle\Twig\PaginationExtension:
         tags: ["twig.extension"]
 
     OHMedia\BootstrapBundle\Service\Paginator:

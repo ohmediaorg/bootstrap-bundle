@@ -1,6 +1,6 @@
 <?php
 
-namespace OHMedia\BootstrapBundle\Twig\Extension;
+namespace OHMedia\BootstrapBundle\Twig;
 
 use OHMedia\BootstrapBundle\Component\Nav\Nav;
 use OHMedia\BootstrapBundle\Component\Nav\NavDropdown;
