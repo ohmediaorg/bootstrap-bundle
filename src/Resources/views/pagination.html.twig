@@ -1,11 +1,11 @@
 <nav aria-label="{{ label }}">
   <ul class="pagination">
     {% if pagination.previous %}
-    <li class="page-item">
+    <li class="page-item page-item-prev">
       <a class="page-link" href="?p={{ pagination.previous }}">Previous</a>
     </li>
     {% else %}
-    <li class="page-item disabled">
+    <li class="page-item page-item-prev disabled">
       <a class="page-link">Previous</a>
     </li>
     {% endif %}
@@ -21,11 +21,11 @@
     </li>
     {% endfor %}
     {% if pagination.next %}
-    <li class="page-item">
+    <li class="page-item page-item-next">
       <a class="page-link" href="?p={{ pagination.next }}">Next</a>
     </li>
     {% else %}
-    <li class="page-item disabled">
+    <li class="page-item page-item-next disabled">
       <a class="page-link">Next</a>
     </li>
     {% endif %}
