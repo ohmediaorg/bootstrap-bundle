@@ -9,8 +9,17 @@
       <a class="page-link">Previous</a>
     </li>
     {% endif %}
+    <li class="page-item page-item-mobile">
+      <select onchange="window.location.href=this.value">
+        {% for page in 1..pagination.pages %}
+        <option value="?p={{ page }}"
+          {% if pagination.active(page) %}selected{% endif %}
+        >{{ page }}</option>
+        {% endfor %}
+      </select>
+    </li>
     {% for page in 1..pagination.pages %}
-    <li class="page-item">
+    <li class="page-item page-item-desktop">
       <a
         {% if pagination.active(page) %}
         class="page-link active" aria-current="page"
