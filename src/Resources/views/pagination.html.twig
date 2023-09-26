@@ -10,7 +10,10 @@
     </li>
     {% endif %}
     <li class="page-item page-item-mobile">
-      <select onchange="window.location.href=this.value">
+      <select
+        onchange="window.location.href=this.value"
+        aria-label="pagination page selection"
+      >
         {% for page in 1..pagination.pages %}
         <option value="?p={{ page }}"
           {% if pagination.active(page) %}selected{% endif %}
