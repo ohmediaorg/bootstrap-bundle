@@ -1,8 +1,10 @@
+{% macro href(p) %}{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({p})) }}{% endmacro %}
+
 <nav class="pagination-nav" aria-label="{{ label }}">
   <ul class="pagination">
     {% if pagination.previous %}
     <li class="page-item page-item-prev">
-      <a class="page-link" href="?p={{ pagination.previous }}">Previous</a>
+      <a class="page-link" href="{{ _self.href(pagination.previous) }}">Previous</a>
     </li>
     {% else %}
     <li class="page-item page-item-prev disabled">
@@ -16,7 +18,7 @@
         aria-label="pagination page selection"
       >
         {% for page in 1..pagination.pages %}
-        <option value="?p={{ page }}"
+        <option value="{{ _self.href(page) }}"
           {% if pagination.active(page) %}selected{% endif %}
         >{{ page }}</option>
         {% endfor %}
@@ -30,12 +32,12 @@
         {% else %}
         class="page-link"
         {% endif %}
-        href="?p={{ page }}">{{ page }}</a>
+        href="{{ _self.href(page) }}">{{ page }}</a>
     </li>
     {% endfor %}
     {% if pagination.next %}
     <li class="page-item page-item-next">
-      <a class="page-link" href="?p={{ pagination.next }}">Next</a>
+      <a class="page-link" href="{{ _self.href(pagination.next) }}">Next</a>
     </li>
     {% else %}
     <li class="page-item page-item-next disabled">
