@@ -19,15 +19,20 @@ class PaginationExtension extends AbstractExtension
         ];
     }
 
-    public function pagination(Environment $twig, Pagination $pagination, string $label = '')
+    public function pagination(Environment $twig, Pagination $pagination, array $options = [])
     {
         if (!$pagination->getPages()) {
             return '';
         }
 
+        $options = array_merge([
+            'aria_label' => '',
+            'size' => 'md',
+        ], $options);
+
         return $twig->render('@OHMediaBootstrap/pagination.html.twig', [
             'pagination' => $pagination,
-            'label' => $label,
+            'options' => $options,
         ]);
     }
 }

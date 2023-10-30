@@ -1,14 +1,18 @@
 {% macro href(p) %}{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({p})) }}{% endmacro %}
 
-<nav class="pagination-nav" aria-label="{{ label }}">
-  <ul class="pagination">
+<nav class="pagination-nav" aria-label="{{ options.aria_label }}">
+  <ul class="pagination pagination-{{ options.size }}">
     {% if pagination.previous %}
     <li class="page-item page-item-prev">
-      <a class="page-link" href="{{ _self.href(pagination.previous) }}">Previous</a>
+      <a class="page-link" href="{{ _self.href(pagination.previous) }}">
+        {% include '@OHMediaBootstrap/_pagination_previous.html.twig' %}
+      </a>
     </li>
     {% else %}
     <li class="page-item page-item-prev disabled">
-      <a class="page-link">Previous</a>
+      <a class="page-link">
+        {% include '@OHMediaBootstrap/_pagination_previous.html.twig' %}
+      </a>
     </li>
     {% endif %}
     <li class="page-item page-item-mobile">
@@ -37,11 +41,15 @@
     {% endfor %}
     {% if pagination.next %}
     <li class="page-item page-item-next">
-      <a class="page-link" href="{{ _self.href(pagination.next) }}">Next</a>
+      <a class="page-link" href="{{ _self.href(pagination.next) }}">
+        {% include '@OHMediaBootstrap/_pagination_next.html.twig' %}
+      </a>
     </li>
     {% else %}
     <li class="page-item page-item-next disabled">
-      <a class="page-link">Next</a>
+      <a class="page-link">
+        {% include '@OHMediaBootstrap/_pagination_next.html.twig' %}
+      </a>
     </li>
     {% endif %}
   </ul>
