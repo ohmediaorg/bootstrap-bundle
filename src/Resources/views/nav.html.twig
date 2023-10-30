@@ -41,6 +41,8 @@
     {% if not link.disabled %}
       href="{{ link.href }}"
       {% if active %}aria-current="page"{% endif %}
+    {% else %}
+      aria-disabled="true"
     {% endif %}
   >
     {{ link.text }}
