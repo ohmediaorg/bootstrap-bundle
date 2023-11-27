@@ -10,9 +10,15 @@
             "email": "justin@ohmedia.ca"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ohmediaorg/utility-bundle"
+        }
+    ],
     "require": {
         "ohmediaorg/utility-bundle": "dev-main",
-        "php": "^7.2",
+        "php": ">=7.2.5",
         "symfony/framework-bundle": "5.4.*"
     },
     "autoload": {
