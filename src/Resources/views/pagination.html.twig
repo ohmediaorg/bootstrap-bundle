@@ -26,11 +26,13 @@
 
 {% set show_end_truncation = (buffer_max + 1) < pagination.pages %}
 
+{% set item_last = min(pagination.offset + pagination.limit, pagination.count) %}
+
 <nav class="pagination-nav" aria-label="{{ options.aria_label }}">
   <ul class="pagination pagination-{{ options.size }}">
     {% if pagination.previous %}
     <li class="page-item page-item-prev">
-      <a class="page-link" href="{{ _self.href(pagination.previous) }}">
+      <a class="page-link" href="{{ _self.href(pagination.previous) }}" aria-label="Previous">
         {% include '@OHMediaBootstrap/_pagination_previous.html.twig' %}
       </a>
     </li>
@@ -68,7 +70,7 @@
 
     {% if pagination.next %}
     <li class="page-item page-item-next">
-      <a class="page-link" href="{{ _self.href(pagination.next) }}">
+      <a class="page-link" href="{{ _self.href(pagination.next) }}" aria-label="Next">
         {% include '@OHMediaBootstrap/_pagination_next.html.twig' %}
       </a>
     </li>
@@ -80,4 +82,6 @@
     </li>
     {% endif %}
   </ul>
+
+  <div class="pagination-info">{{ pagination.offset + 1 }}-{{ item_last }} of {{ pagination.count }}</div>
 </nav>
