@@ -73,6 +73,11 @@ class Pagination
         return $this->next;
     }
 
+    public function getPage(): int
+    {
+        return $this->page;
+    }
+
     public function isActive(int $page): bool
     {
         return $page === $this->page;
