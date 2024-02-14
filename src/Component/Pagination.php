@@ -78,6 +78,16 @@ class Pagination
         return $this->page;
     }
 
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
     public function isActive(int $page): bool
     {
         return $page === $this->page;
