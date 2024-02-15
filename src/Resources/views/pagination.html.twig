@@ -26,8 +26,6 @@
 
 {% set show_end_truncation = (buffer_max + 1) < pagination.pages %}
 
-{% set item_last = min(pagination.offset + pagination.limit, pagination.count) %}
-
 <nav class="pagination-nav" aria-label="{{ options.aria_label }}">
   <ul class="pagination pagination-{{ options.size }}">
     {% if pagination.previous %}
@@ -82,6 +80,4 @@
     </li>
     {% endif %}
   </ul>
-
-  <div class="pagination-info">{{ pagination.offset + 1 }}-{{ item_last }} of {{ pagination.count }}</div>
 </nav>

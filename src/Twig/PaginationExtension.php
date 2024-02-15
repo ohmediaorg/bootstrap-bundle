@@ -16,6 +16,7 @@ class PaginationExtension extends AbstractExtension
                 'is_safe' => ['html'],
                 'needs_environment' => true,
             ]),
+            new TwigFunction('bootstrap_pagination_info', [$this, 'paginationInfo']),
         ];
     }
 
@@ -34,5 +35,16 @@ class PaginationExtension extends AbstractExtension
             'pagination' => $pagination,
             'options' => $options,
         ]);
+    }
+
+    public function paginationInfo(Pagination $pagination)
+    {
+        $offset = $pagination->getOffset();
+        $limit = $pagination->getLimit();
+        $count = $pagination->getCount();
+
+        $lastItem = min($offset + $limit, $count);
+
+        return sprintf('%s-%s of %s', $offset + 1, $lastItem, $count);
     }
 }
