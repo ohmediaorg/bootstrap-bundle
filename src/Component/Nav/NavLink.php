@@ -5,13 +5,19 @@ namespace OHMedia\BootstrapBundle\Component\Nav;
 class NavLink implements NavItemInterface, NavDropdownItemInterface
 {
     private bool $disabled = false;
-    private string $href = '';
+    private string $text = '';
     private string $icon = '';
-    private string $text;
+    private string $route = '';
+    private array $route_params = [];
 
     public function __construct(string $text)
     {
         $this->text = $text;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
     }
 
     public function setDisabled(bool $disabled): self
@@ -26,18 +32,6 @@ class NavLink implements NavItemInterface, NavDropdownItemInterface
         return $this->disabled;
     }
 
-    public function setHref(string $href): self
-    {
-        $this->href = $href;
-
-        return $this;
-    }
-
-    public function getHref(): string
-    {
-        return $this->href;
-    }
-
     public function setIcon(string $icon): self
     {
         $this->icon = $icon;
@@ -50,9 +44,28 @@ class NavLink implements NavItemInterface, NavDropdownItemInterface
         return $this->icon;
     }
 
-    public function getText(): string
+    public function setRoute(string $route): self
     {
-        return $this->text;
+        $this->route = $route;
+
+        return $this;
+    }
+
+    public function getRoute(): string
+    {
+        return $this->route;
+    }
+
+    public function setRouteParams(array $route_params): self
+    {
+        $this->route_params = $route_params;
+
+        return $this;
+    }
+
+    public function getRouteParams(): array
+    {
+        return $this->route_params;
     }
 
     public function isActive(string $currentPath): bool
