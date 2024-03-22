@@ -1,6 +1,6 @@
 <?php
 
-namespace OHMedia\BootstrapBundle\Twig\Extension;
+namespace OHMedia\BootstrapBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
