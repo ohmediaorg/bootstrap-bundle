@@ -3,7 +3,7 @@
     {% set dropdown_active = dropdown.active(current_path) %}
 
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle {{ dropdown_active ? 'active' : '' }}" href="{{ dropdown.href }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <a class="nav-link dropdown-toggle {{ dropdown_active ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         {% if dropdown.icon %}{{ bootstrap_icon(dropdown.icon) }}{% endif %}
         <span class="nav-link-text">{{ dropdown.text }}</span>
       </a>
@@ -40,7 +40,7 @@
 
   <a class="{{ class_name }}"
     {% if not link.disabled %}
-      href="{{ link.href }}"
+      href="{{ path(link.route, link.routeParams) }}"
       {% if active %}aria-current="page"{% endif %}
     {% else %}
       aria-disabled="true"

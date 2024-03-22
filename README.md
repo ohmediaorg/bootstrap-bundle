@@ -161,18 +161,17 @@ use OHMedia\BootstrapBundle\Component\Nav\NavLink;
 
 $navbar = new Nav();
 
-$dashboardHref = $urlGenerator->generate('dashboard');
-
-$dashboard = new NavLink($dashboardHref, 'Dashboard');
+$dashboard = (new NavLink('Dashboard'))
+    ->setRoute('dashboard');
 
 $navbar->addItem($dashboard);
 
 $userDropdown = new NavDropdown('Users');
 
-if ($security->isGranted('user_list')) {
-    $userListHref = $urlGenerator->generate('user_list');
-    
-    $userList = new NavLink($userListHref, 'List');
+if ($security->isGranted('user_edit', $user)) {
+    $userList = (new NavLink('Profile'))
+        ->setRoute('user_edit')
+        ->setRouteParams(['id' => $user->getId()]);
     
     $userDropdown->addLink($userList);
 }
