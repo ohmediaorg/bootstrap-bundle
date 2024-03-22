@@ -13,11 +13,6 @@ class NavDropdown implements NavItemInterface
         $this->text = $text;
     }
 
-    public function getHref(): string
-    {
-        return '#';
-    }
-
     public function setIcon(string $icon): self
     {
         $this->icon = $icon;
