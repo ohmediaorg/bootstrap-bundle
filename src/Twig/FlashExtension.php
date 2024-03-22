@@ -1,6 +1,6 @@
 <?php
 
-namespace OHMedia\BootstrapBundle\Twig\Extension;
+namespace OHMedia\BootstrapBundle\Twig;
 
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
@@ -8,7 +8,7 @@ use Twig\TwigFunction;
 
 class FlashExtension extends AbstractExtension
 {
-    const FLASH_MAP = [
+    public const FLASH_MAP = [
         'primary',
         'secondary',
         'success',

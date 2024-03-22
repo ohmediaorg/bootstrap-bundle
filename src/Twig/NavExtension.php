@@ -1,6 +1,6 @@
 <?php
 
-namespace OHMedia\BootstrapBundle\Twig\Extension;
+namespace OHMedia\BootstrapBundle\Twig;
 
 use OHMedia\BootstrapBundle\Component\Nav\Nav;
 use OHMedia\BootstrapBundle\Component\Nav\NavDropdown;
@@ -42,15 +42,13 @@ class NavExtension extends AbstractExtension
         Nav $nav,
         string $className = 'navbar navbar-expand-lg bg-light',
         bool $showLogout = false
-    )
-    {
+    ) {
         $logoutPath = null;
 
         if ($showLogout) {
             try {
                 $logoutPath = $this->logoutUrlGenerator->getLogoutPath();
-            }
-            catch(\Exception $e) {
+            } catch (\Exception $e) {
                 $logoutPath = null;
             }
         }

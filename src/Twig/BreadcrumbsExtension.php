@@ -1,6 +1,6 @@
 <?php
 
-namespace OHMedia\BootstrapBundle\Twig\Extension;
+namespace OHMedia\BootstrapBundle\Twig;
 
 use OHMedia\BootstrapBundle\Component\Breadcrumb;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

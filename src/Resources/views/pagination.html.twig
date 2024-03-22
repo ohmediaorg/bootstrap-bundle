@@ -1,32 +1,82 @@
-<nav aria-label="{{ label }}">
-  <ul class="pagination">
+{% macro href(p) %}{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({p})) }}{% endmacro %}
+
+{% macro page_item(pagination, page) %}
+<li class="page-item">
+  <a
+    {% if pagination.active(page) %}
+    class="page-link active" aria-current="page"
+    {% else %}
+    class="page-link"
+    {% endif %}
+    href="{{ _self.href(page) }}">{{ page }}</a>
+</li>
+{% endmacro %}
+
+{% set buffer = 2 %}
+
+{% set buffer_min = max(pagination.page - buffer, 1) %}
+
+{% set buffer_max = min(pagination.page + buffer, pagination.pages) %}
+
+{% set show_first = buffer_min > 1 %}
+
+{% set show_start_truncation = buffer_min > 2 %}
+
+{% set show_last = buffer_max < pagination.pages %}
+
+{% set show_end_truncation = (buffer_max + 1) < pagination.pages %}
+
+<nav class="pagination-nav" aria-label="{{ options.aria_label }}">
+  <ul class="pagination pagination-{{ options.size }}">
     {% if pagination.previous %}
-    <li class="page-item">
-      <a class="page-link" href="?p={{ pagination.previous }}">Previous</a>
+    <li class="page-item page-item-prev">
+      <a class="page-link" href="{{ _self.href(pagination.previous) }}" aria-label="Previous">
+        {% include '@OHMediaBootstrap/_pagination_previous.html.twig' %}
+      </a>
     </li>
     {% else %}
-    <li class="page-item disabled">
-      <a class="page-link">Previous</a>
+    <li class="page-item page-item-prev disabled">
+      <a class="page-link">
+        {% include '@OHMediaBootstrap/_pagination_previous.html.twig' %}
+      </a>
     </li>
     {% endif %}
-    {% for page in 1..pagination.pages %}
-    <li class="page-item">
-      <a
-        {% if pagination.active(page) %}
-        class="page-link active" aria-current="page"
-        {% else %}
-        class="page-link"
-        {% endif %}
-        href="?p={{ page }}">{{ page }}</a>
+
+    {% if show_first %}
+    {{ _self.page_item(pagination, 1) }}
+    {% endif %}
+
+    {% if show_start_truncation %}
+    <li class="page-item page-item-truncate disabled">
+      <a class="page-link" aria-hidden="true">&hellip;</a>
     </li>
+    {% endif %}
+
+    {% for page in buffer_min..buffer_max %}
+    {{ _self.page_item(pagination, page) }}
     {% endfor %}
+
+    {% if show_end_truncation %}
+    <li class="page-item page-item-truncate disabled">
+      <a class="page-link" aria-hidden="true">&hellip;</a>
+    </li>
+    {% endif %}
+
+    {% if show_last %}
+    {{ _self.page_item(pagination, pagination.pages) }}
+    {% endif %}
+
     {% if pagination.next %}
-    <li class="page-item">
-      <a class="page-link" href="?p={{ pagination.next }}">Next</a>
+    <li class="page-item page-item-next">
+      <a class="page-link" href="{{ _self.href(pagination.next) }}" aria-label="Next">
+        {% include '@OHMediaBootstrap/_pagination_next.html.twig' %}
+      </a>
     </li>
     {% else %}
-    <li class="page-item disabled">
-      <a class="page-link">Next</a>
+    <li class="page-item page-item-next disabled">
+      <a class="page-link">
+        {% include '@OHMediaBootstrap/_pagination_next.html.twig' %}
+      </a>
     </li>
     {% endif %}
   </ul>

@@ -2,8 +2,8 @@
 
 namespace OHMedia\BootstrapBundle\Component;
 
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class Pagination
 {
@@ -21,8 +21,7 @@ class Pagination
         int $limit,
         int $page,
         bool $fetchJoinCollection = true
-    )
-    {
+    ) {
         $this->page = max(1, $page);
 
         $this->limit = max(1, $limit);
@@ -72,6 +71,21 @@ class Pagination
     public function getNext(): ?int
     {
         return $this->next;
+    }
+
+    public function getPage(): int
+    {
+        return $this->page;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
     }
 
     public function isActive(int $page): bool
