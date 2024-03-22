@@ -4,7 +4,8 @@
 
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle {{ dropdown_active ? 'active' : '' }}" href="{{ dropdown.href }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ dropdown.text|raw }}
+        {% if dropdown.icon %}{{ bootstrap_icon(dropdown.icon) }}{% endif %}
+        <span class="nav-link-text">{{ dropdown.text }}</span>
       </a>
       <ul class="dropdown-menu">
         {% for item in dropdown.items %}
@@ -45,7 +46,8 @@
       aria-disabled="true"
     {% endif %}
   >
-    {{ link.text|raw }}
+    {% if link.icon %}{{ bootstrap_icon(link.icon) }}{% endif %}
+    <span class="nav-link-text">{{ link.text }}</span>
   </a>
 {% endmacro %}
 

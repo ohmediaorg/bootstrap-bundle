@@ -5,6 +5,7 @@ namespace OHMedia\BootstrapBundle\Component\Nav;
 class NavDropdown implements NavItemInterface
 {
     private array $items = [];
+    private string $icon = '';
     private string $text;
 
     public function __construct(string $text)
@@ -15,6 +16,18 @@ class NavDropdown implements NavItemInterface
     public function getHref(): string
     {
         return '#';
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getIcon(): string
+    {
+        return $this->icon;
     }
 
     public function getText(): string
