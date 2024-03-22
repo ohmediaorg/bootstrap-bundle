@@ -4,7 +4,7 @@
 
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle {{ dropdown_active ? 'active' : '' }}" href="{{ dropdown.href }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ dropdown.text }}
+        {{ dropdown.text|raw }}
       </a>
       <ul class="dropdown-menu">
         {% for item in dropdown.items %}
@@ -45,7 +45,7 @@
       aria-disabled="true"
     {% endif %}
   >
-    {{ link.text }}
+    {{ link.text|raw }}
   </a>
 {% endmacro %}
 
