@@ -8,5 +8,5 @@ interface NavItemInterface
 
     public function getIcon(): string;
 
-    public function isActive(string $currentPath): bool;
+    public function isActive(string $currentRoute, array $currentRouteParams): bool;
 }
