@@ -29,7 +29,7 @@ class NavLink implements NavItemInterface, NavDropdownItemInterface
 
     public function getRouteParams(): array
     {
-        return $this->route_params;
+        return $this->routeParams;
     }
 
     public function setDisabled(bool $disabled): self
