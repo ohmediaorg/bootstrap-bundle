@@ -9,10 +9,10 @@ services:
         autowire: true
         tags: ["twig.extension"]
 
-    OHMedia\BootstrapBundle\Twig\Extension\IconExtension:
+    OHMedia\BootstrapBundle\Twig\IconExtension:
         tags: ["twig.extension"]
 
-    OHMedia\BootstrapBundle\Twig\Extension\NavExtension:
+    OHMedia\BootstrapBundle\Twig\NavExtension:
         arguments: ["@security.logout_url_generator"]
         tags: ["twig.extension"]
 
