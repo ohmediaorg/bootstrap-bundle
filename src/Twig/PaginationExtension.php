@@ -45,6 +45,6 @@ class PaginationExtension extends AbstractExtension
 
         $lastItem = min($offset + $limit, $count);
 
-        return sprintf('%s-%s of %s', $offset + 1, $lastItem, $count);
+        return $count ? sprintf('%s-%s of %s', $offset + 1, $lastItem, $count) : '';
     }
 }
