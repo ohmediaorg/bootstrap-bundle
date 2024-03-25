@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony BootstrapBundle",
     "keywords": ["Bootstrap"],
-    "license": "MIT",
+    "license": "proprietary",
     "authors": [
         {
             "name": "Justin Hoffman",
