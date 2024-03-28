@@ -55,9 +55,4 @@ class NavLink implements NavItemInterface, NavDropdownItemInterface
     {
         return $this->icon;
     }
-
-    public function isActive(string $currentRoute, array $currentRouteParams): bool
-    {
-        return $this->route === $currentRoute && $this->routeParams === $currentRouteParams;
-    }
 }
