@@ -48,15 +48,4 @@ class NavDropdown implements NavItemInterface
     {
         return $this->items;
     }
-
-    public function isActive(string $currentRoute, array $currentRouteParams): bool
-    {
-        foreach ($this->items as $item) {
-            if ($item instanceof NavLink && $item->isActive($currentRoute, $currentRouteParams)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
 }
