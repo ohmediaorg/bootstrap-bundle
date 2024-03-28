@@ -7,57 +7,35 @@ use OHMedia\BootstrapBundle\Component\Nav\NavDropdown;
 use OHMedia\BootstrapBundle\Component\Nav\NavDropdownDivider;
 use OHMedia\BootstrapBundle\Component\Nav\NavDropdownItemInterface;
 use OHMedia\BootstrapBundle\Component\Nav\NavItemInterface;
-use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
+use OHMedia\BootstrapBundle\Component\Nav\NavLink;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class NavExtension extends AbstractExtension
 {
-    private $logoutUrlGenerator;
+    private RequestStack $requestStack;
+    private UrlGeneratorInterface $urlGenerator;
 
-    public function __construct(LogoutUrlGenerator $logoutUrlGenerator)
+    public function __construct(RequestStack $requestStack, UrlGeneratorInterface $urlGenerator)
     {
-        $this->logoutUrlGenerator = $logoutUrlGenerator;
+        $this->requestStack = $requestStack;
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('bootstrap_navbar', [$this, 'navbar'], [
-                'is_safe' => ['html'],
-                'needs_environment' => true,
-            ]),
             new TwigFunction('bootstrap_nav', [$this, 'nav'], [
                 'is_safe' => ['html'],
                 'needs_environment' => true,
             ]),
+            new TwigFunction('is_bootstrap_nav_item_active', [$this, 'isActive']),
             new TwigFunction('is_bootstrap_nav_dropdown', [$this, 'isDropdown']),
             new TwigFunction('is_bootstrap_nav_dropdown_divider', [$this, 'isDivider']),
         ];
-    }
-
-    public function navbar(
-        Environment $twig,
-        Nav $nav,
-        string $className = 'navbar navbar-expand-lg bg-light',
-        bool $showLogout = false
-    ) {
-        $logoutPath = null;
-
-        if ($showLogout) {
-            try {
-                $logoutPath = $this->logoutUrlGenerator->getLogoutPath();
-            } catch (\Exception $e) {
-                $logoutPath = null;
-            }
-        }
-
-        return $twig->render('@OHMediaBootstrap/navbar.html.twig', [
-            'nav' => $nav,
-            'class_name' => $className,
-            'logout_path' => $logoutPath,
-        ]);
     }
 
     public function nav(Environment $twig, Nav $nav, string $className = 'nav')
@@ -66,6 +44,32 @@ class NavExtension extends AbstractExtension
             'nav' => $nav,
             'class_name' => $className,
         ]);
+    }
+
+    public function isActive(mixed $item): bool
+    {
+        if ($item instanceof NavDropdown) {
+            foreach ($item->getItems() as $child) {
+                if ($this->isActive($child)) {
+                    return true;
+                }
+            }
+        } elseif ($item instanceof NavLink) {
+            $request = $this->requestStack->getCurrentRequest();
+
+            $currentRoute = $request->get('_route', '');
+            $currentRouteParams = $request->get('_route_params', []);
+
+            $path = $this->urlGenerator->generate($item->getRoute(), $item->getRouteParams());
+
+            $currentPath = $currentRoute
+                ? $this->urlGenerator->generate($currentRoute, $currentRouteParams)
+                : '';
+
+            return $path === $currentPath;
+        }
+
+        return false;
     }
 
     public function isDropdown(NavItemInterface $item)
