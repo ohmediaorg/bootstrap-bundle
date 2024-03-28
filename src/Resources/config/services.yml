@@ -13,7 +13,7 @@ services:
         tags: ["twig.extension"]
 
     OHMedia\BootstrapBundle\Twig\NavExtension:
-        arguments: ["@security.logout_url_generator"]
+        autowire: true
         tags: ["twig.extension"]
 
     OHMedia\BootstrapBundle\Twig\PaginationExtension:
