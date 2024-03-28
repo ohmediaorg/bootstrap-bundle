@@ -3,20 +3,12 @@
 namespace OHMedia\BootstrapBundle\Twig;
 
 use OHMedia\BootstrapBundle\Component\Breadcrumb;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class BreadcrumbsExtension extends AbstractExtension
 {
-    private UrlGeneratorInterface $urlGenerator;
-
-    public function __construct(UrlGeneratorInterface $urlGenerator)
-    {
-        $this->urlGenerator = $urlGenerator;
-    }
-
     public function getFunctions(): array
     {
         return [
@@ -28,11 +20,9 @@ class BreadcrumbsExtension extends AbstractExtension
         ];
     }
 
-    public function breadcrumb(string $text, string $route = '', array $parameters = []): Breadcrumb
+    public function breadcrumb(string $text, string $route = '', array $routeParams = []): Breadcrumb
     {
-        $href = $route ? $this->urlGenerator->generate($route, $parameters) : '';
-
-        return new Breadcrumb($text, $href);
+        return new Breadcrumb($text, $route, $routeParams);
     }
 
     public function breadcrumbs(Environment $twig, Breadcrumb ...$breadcrumbs)
