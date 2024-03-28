@@ -1,6 +1,6 @@
-{% macro nav_dropdown(dropdown, current_route, current_route_params) %}
+{% macro nav_dropdown(dropdown) %}
   {% if dropdown.items|length > 0 %}
-    {% set dropdown_active = dropdown.active(current_route, current_route_params) %}
+    {% set dropdown_active = is_bootstrap_nav_item_active(dropdown) %}
 
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle {{ dropdown_active ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -13,7 +13,7 @@
           {% if is_bootstrap_nav_dropdown_divider(item) %}
           <hr class="dropdown-divider" />
           {% else %}
-          {{ _self.nav_link(item, current_route, current_route_params, 'dropdown-item') }}
+          {{ _self.nav_link(item, 'dropdown-item') }}
           {% endif %}
         </li>
         {% endfor %}
@@ -22,15 +22,14 @@
   {% endif %}
 {% endmacro %}
 
-{% macro nav_item(item, current_route, current_route_params) %}
-  {% set link_active = item.active(current_route, current_route_params) %}
+{% macro nav_item(item) %}
   <li class="nav-item">
-    {{ _self.nav_link(item, current_route, current_route_params, 'nav-link') }}
+    {{ _self.nav_link(item, 'nav-link') }}
   </li>
 {% endmacro %}
 
-{% macro nav_link(link, current_route, current_route_params, class_name) %}
-  {% set active = link.active(current_route, current_route_params) %}
+{% macro nav_link(link, class_name) %}
+  {% set active = is_bootstrap_nav_item_active(link) %}
 
   {% if link.disabled %}
     {% set class_name = class_name ~ ' disabled' %}
@@ -51,13 +50,10 @@
   </a>
 {% endmacro %}
 
-{% set current_route = app.request.attributes.get('_route', '') %}
-{% set current_route_params = app.request.attributes.get('_route_params', []) %}
-
 <ul class="{{ class_name }}">
   {% for item in nav.items %}
     {{ is_bootstrap_nav_dropdown(item)
-      ? _self.nav_dropdown(item, current_route, current_route_params)
-      : _self.nav_item(item, current_route, current_route_params) }}
+      ? _self.nav_dropdown(item)
+      : _self.nav_item(item) }}
   {% endfor %}
 </ul>
