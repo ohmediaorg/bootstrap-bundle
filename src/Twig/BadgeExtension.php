@@ -15,13 +15,28 @@ class BadgeExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('badge_success', [$this, 'badgeSuccess'], [
+            new TwigFunction('bootstrap_badge_secondary', [$this, 'badgeSecondary'], [
                 'is_safe' => ['html'],
             ]),
-            new TwigFunction('badge_info', [$this, 'badgeInfo'], [
+            new TwigFunction('bootstrap_badge_primary', [$this, 'badgePrimary'], [
                 'is_safe' => ['html'],
             ]),
-            new TwigFunction('badge_warning', [$this, 'badgeWarning'], [
+            new TwigFunction('bootstrap_badge_success', [$this, 'badgeSuccess'], [
+                'is_safe' => ['html'],
+            ]),
+            new TwigFunction('bootstrap_badge_danger', [$this, 'badgeDanger'], [
+                'is_safe' => ['html'],
+            ]),
+            new TwigFunction('bootstrap_badge_warning', [$this, 'badgeWarning'], [
+                'is_safe' => ['html'],
+            ]),
+            new TwigFunction('bootstrap_badge_info', [$this, 'badgeInfo'], [
+                'is_safe' => ['html'],
+            ]),
+            new TwigFunction('bootstrap_badge_light', [$this, 'badgeLight'], [
+                'is_safe' => ['html'],
+            ]),
+            new TwigFunction('bootstrap_badge_dark', [$this, 'badgeDark'], [
                 'is_safe' => ['html'],
             ]),
         ];
