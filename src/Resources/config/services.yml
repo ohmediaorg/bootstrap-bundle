@@ -1,4 +1,7 @@
 services:
+    OHMedia\BootstrapBundle\Twig\BadgeExtension:
+        tags: ["twig.extension"]
+
     OHMedia\BootstrapBundle\Twig\AccordionExtension:
         tags: ["twig.extension"]
 
