@@ -8,11 +8,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class Paginator
 {
-    private $requestStack;
-
-    public function __construct(RequestStack $requestStack)
+    public function __construct(private RequestStack $requestStack)
     {
-        $this->requestStack = $requestStack;
     }
 
     public function paginate(

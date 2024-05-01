@@ -16,13 +16,10 @@ use Twig\TwigFunction;
 
 class NavExtension extends AbstractExtension
 {
-    private RequestStack $requestStack;
-    private UrlGeneratorInterface $urlGenerator;
-
-    public function __construct(RequestStack $requestStack, UrlGeneratorInterface $urlGenerator)
-    {
-        $this->requestStack = $requestStack;
-        $this->urlGenerator = $urlGenerator;
+    public function __construct(
+        private RequestStack $requestStack,
+        private UrlGeneratorInterface $urlGenerator
+    ) {
     }
 
     public function getFunctions(): array

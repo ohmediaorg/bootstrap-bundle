@@ -4,17 +4,14 @@ namespace OHMedia\BootstrapBundle\Component\Nav;
 
 class NavLink implements NavItemInterface, NavDropdownItemInterface
 {
-    private string $text = '';
-    private string $route = '';
-    private array $routeParams = [];
     private bool $disabled = false;
     private string $icon = '';
 
-    public function __construct(string $text, string $route, array $routeParams = [])
-    {
-        $this->text = $text;
-        $this->route = $route;
-        $this->routeParams = $routeParams;
+    public function __construct(
+        private string $text,
+        private string $route,
+        private array $routeParams = []
+    ) {
     }
 
     public function getText(): string

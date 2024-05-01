@@ -4,13 +4,8 @@ namespace OHMedia\BootstrapBundle\Component\Accordion;
 
 class AccordionItem implements AccordionItemInterface
 {
-    private $body;
-    private $header;
-
-    public function __construct(string $header, string $body)
+    public function __construct(private string $header, private string $body)
     {
-        $this->body = $body;
-        $this->header = $header;
     }
 
     public function getBody(): string

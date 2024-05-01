@@ -7,18 +7,13 @@ use Twig\TwigFunction;
 
 class BadgeExtension extends AbstractExtension
 {
-    private function badge(string $message, string $themeColor): string
-    {
-        return '<span class="badge text-bg-'.$themeColor.'">'.$message.'</span>';
-    }
-
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('bootstrap_badge_secondary', [$this, 'badgeSecondary'], [
+            new TwigFunction('bootstrap_badge_primary', [$this, 'badgePrimary'], [
                 'is_safe' => ['html'],
             ]),
-            new TwigFunction('bootstrap_badge_primary', [$this, 'badgePrimary'], [
+            new TwigFunction('bootstrap_badge_secondary', [$this, 'badgeSecondary'], [
                 'is_safe' => ['html'],
             ]),
             new TwigFunction('bootstrap_badge_success', [$this, 'badgeSuccess'], [
@@ -80,5 +75,10 @@ class BadgeExtension extends AbstractExtension
     public function badgeDark(string $message): string
     {
         return $this->badge($message, 'dark');
+    }
+
+    private function badge(string $message, string $themeColor): string
+    {
+        return '<span class="badge text-bg-'.$themeColor.'">'.$message.'</span>';
     }
 }

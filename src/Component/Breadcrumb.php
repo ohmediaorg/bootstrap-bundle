@@ -4,15 +4,11 @@ namespace OHMedia\BootstrapBundle\Component;
 
 class Breadcrumb
 {
-    private $text;
-    private $route;
-    private $routeParams;
-
-    public function __construct(string $text, string $route = '', array $routeParams = [])
-    {
-        $this->text = $text;
-        $this->route = $route;
-        $this->routeParams = $routeParams;
+    public function __construct(
+        private string $text,
+        private string $route = '',
+        private array $routeParams = []
+    ) {
     }
 
     public function getText(): string

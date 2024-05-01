@@ -6,11 +6,9 @@ class NavDropdown implements NavItemInterface
 {
     private array $items = [];
     private string $icon = '';
-    private string $text;
 
-    public function __construct(string $text)
+    public function __construct(private string $text)
     {
-        $this->text = $text;
     }
 
     public function setIcon(string $icon): self
