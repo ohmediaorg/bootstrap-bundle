@@ -2,6 +2,21 @@
 
 This bundle offers utility for dealing with Bootstrap components.
 
+# Installation
+
+Update `composer.json` by adding this to the `repositories` array:
+
+```json
+{
+    "type": "vcs",
+    "url": "https://github.com/ohmediaorg/bootstrap-bundle"
+}
+```
+
+Then run `composer require ohmediaorg/bootstrap-bundle:dev-main`.
+
+# Functionality
+
 ## Pagination
 
 Use the Paginator service to create a Pagination object:
@@ -13,9 +28,9 @@ public function index(Paginator $paginator, PostRepository $postRepository)
 {
     $queryBuilder = $postRepository->createQueryBuilder('p');
     $queryBuilder->orderBy('p.publish_date', 'asc');
-    
+
     $limit = 20;
-    
+
     $pagination = $paginator->paginate($queryBuilder, $limit);
 }
 ```
@@ -91,10 +106,10 @@ use OHMedia\BootstrapBundle\Component\Accordion\AccordionItem;
 public function index()
 {
     $items = [];
-    
+
     $items[] = new AccordionItem('Header 1', 'Body 1');
     $items[] = new AccordionItem('Header 2', 'Body 2');
-    
+
     $accordion = (new Accordion())
         ->setFirstOpen(false) // default
         ->setAlwaysOpen(false) // default
@@ -113,12 +128,12 @@ use OHMedia\BootstrapBundle\Component\Accordion\AccordionItemInterface;
 class Faq implements AccordianItemInterface
 {
     // ...
-   
+
     public function getHeader(): string
     {
         return $this->getQuestion();
     }
-   
+
     public function getBody(): string
     {
         return $this->getAnswer();
@@ -135,7 +150,7 @@ use OHMedia\BootstrapBundle\Component\Accordion\Accordion;
 public function index(FaqRepository $faqRepository)
 {
     $faqs = $faqRepository->findAll();
-    
+
     $accordion = (new Accordion())
         ->setFirstOpen(false) // default
         ->setAlwaysOpen(false) // default
@@ -171,7 +186,7 @@ if ($security->isGranted('user_edit', $user)) {
     $userList = new NavLink('Profile', 'user_edit', [
         'id' => $user->getId(),
     ]);
-    
+
     $userDropdown->addLink($userList);
 }
 ```
