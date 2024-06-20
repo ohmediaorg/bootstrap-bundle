@@ -1,4 +1,4 @@
-{% macro href(p) %}{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({p})) }}{% endmacro %}
+{% macro href(p) %}{{ app.request.pathInfo }}?{{ app.request.query.all|merge({p})|url_encode }}{% endmacro %}
 
 {% macro page_item(pagination, page) %}
 <li class="page-item">
