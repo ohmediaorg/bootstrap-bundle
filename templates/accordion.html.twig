@@ -9,18 +9,16 @@
   {% set header_id = 'accordion-header-' ~ item_id %}
   {% set body_id = 'accordion-body-' ~ item_id %}
   <div class="accordion-item">
-    <h2 class="accordion-header" id="{{ header_id }}">
+    <h3 class="accordion-header" id="{{ header_id }}">
       <button
         class="accordion-button {{ not open ? 'collapsed' : '' }}"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#{{ body_id }}"
-        {% if open %}
-        aria-expanded="true"
-        {% endif %}
+        aria-expanded="{{ open ? 'true' : 'false' }}"
         aria-controls="{{ body_id }}"
       >{{ item.header|raw }}</button>
-    </h2>
+    </h3>
     <div
       id="{{ body_id }}"
       class="accordion-collapse collapse {{ open ? 'show' : '' }}"
