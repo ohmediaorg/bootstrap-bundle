@@ -17,9 +17,13 @@ class Paginator
         int $limit,
         bool $fetchJoinCollection = true
     ): Pagination {
-        $page = $this->requestStack
-            ->getCurrentRequest()
-            ->query->get('p', 1);
+        try {
+            $page = $this->requestStack
+                ->getCurrentRequest()
+                ->query->get('p', 1);
+        } catch (\Exception $e) {
+            $page = 1;
+        }
 
         return new Pagination(
             $queryBuilder,

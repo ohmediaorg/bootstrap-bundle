@@ -22,9 +22,19 @@ class Pagination
         int $page,
         bool $fetchJoinCollection = true
     ) {
-        $this->page = max(1, $page);
-
         $this->limit = max(1, $limit);
+
+        $this->count = (new Paginator($queryBuilder, $fetchJoinCollection))->count();
+
+        $this->pages = ceil($this->count / $this->limit);
+
+        if ($page < 1) {
+            $page = 1;
+        } elseif ($page > $this->pages) {
+            $page = $this->pages;
+        }
+
+        $this->page = $page;
 
         $this->offset = $this->limit * ($this->page - 1);
 
@@ -34,10 +44,6 @@ class Pagination
         ;
 
         $this->paginator = new Paginator($queryBuilder, $fetchJoinCollection);
-
-        $this->count = count($this->paginator);
-
-        $this->pages = ceil($this->count / $this->limit);
 
         $this->previous = $this->page > 1
             ? $this->page - 1
