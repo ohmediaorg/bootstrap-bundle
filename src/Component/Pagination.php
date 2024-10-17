@@ -26,7 +26,7 @@ class Pagination
 
         $this->count = (new Paginator($queryBuilder, $fetchJoinCollection))->count();
 
-        $this->pages = ceil($this->count / $this->limit);
+        $this->pages = $this->count ? ceil($this->count / $this->limit) : 1;
 
         if ($page < 1) {
             $page = 1;
