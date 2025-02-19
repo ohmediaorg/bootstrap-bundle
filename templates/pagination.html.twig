@@ -1,4 +1,4 @@
-{% macro href(p) %}{{ app.request.requestUri }}?{{ app.request.query.all|merge({p})|url_encode }}{% endmacro %}
+{% macro href(p) %}{{ app.request.baseUrl }}{{ app.request.pathInfo }}?{{ app.request.query.all|merge({p})|url_encode }}{% endmacro %}
 
 {% macro page_item(pagination, page) %}
 <li class="page-item">
