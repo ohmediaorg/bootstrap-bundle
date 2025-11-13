@@ -29,7 +29,7 @@ class PaginationExtension extends AbstractExtension
         $options = array_merge([
             'aria_label' => '',
             'size' => 'md',
-            'html_anchor' => null,
+            'url_fragment' => null,
         ], $options);
 
         return $twig->render('@OHMediaBootstrap/pagination.html.twig', [
