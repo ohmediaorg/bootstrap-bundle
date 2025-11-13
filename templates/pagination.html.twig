@@ -81,3 +81,17 @@
     {% endif %}
   </ul>
 </nav>
+
+{% if options.html_anchor %}
+  <script>
+    window.addEventListener('load', function() {
+      const params = new URLSearchParams(window.location.search);
+      const page = params.get("p");
+
+      // only scroll if pagination page is active in the url
+      if(page) {
+        document.getElementById("{{ options.html_anchor }}").scrollIntoView({ behavior: "instant" });
+      }
+    });
+  </script>
+{% endif %}
