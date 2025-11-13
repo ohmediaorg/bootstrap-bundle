@@ -1,6 +1,4 @@
-{% macro href(p, url_fragment) %}
-  {{ app.request.baseUrl }}{{ app.request.pathInfo }}?{{ app.request.query.all|merge({p})|url_encode }}{% if url_fragment %}#{{ url_fragment }}{% endif %}
-{% endmacro %}
+{% macro href(p, url_fragment) %}{{ app.request.baseUrl }}{{ app.request.pathInfo }}?{{ app.request.query.all|merge({p})|url_encode }}{% if url_fragment %}#{{ url_fragment }}{% endif %}{% endmacro %}
 
 {% macro page_item(pagination, page, url_fragment = null) %}
 <li class="page-item">
