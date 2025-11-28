@@ -1,15 +1,15 @@
 {% macro href(p, url_fragment) %}{{ app.request.baseUrl }}{{ app.request.pathInfo }}?{{ app.request.query.all|merge({p})|url_encode }}{% if url_fragment %}#{{ url_fragment }}{% endif %}{% endmacro %}
 
 {% macro page_item(pagination, page, url_fragment = null) %}
-<li class="page-item">
-  <a
-    {% if pagination.active(page) %}
-    class="page-link active" aria-current="page"
-    {% else %}
-    class="page-link"
-    {% endif %}
-    href="{{ _self.href(page, url_fragment) }}">{{ page }}</a>
-</li>
+  <li class="page-item">
+    <a
+      {% if pagination.active(page) %}
+      class="page-link active" aria-current="page"
+      {% else %}
+      class="page-link"
+      {% endif %}
+      href="{{ _self.href(page, url_fragment) }}">{{ page }}</a>
+  </li>
 {% endmacro %}
 
 {% set buffer = 2 %}
@@ -29,17 +29,17 @@
 <nav class="pagination-nav" aria-label="{{ options.aria_label }}">
   <ul class="pagination pagination-{{ options.size }}">
     {% if pagination.previous %}
-    <li class="page-item page-item-prev">
-      <a class="page-link" href="{{ _self.href(pagination.previous, options.url_fragment) }}" aria-label="Previous">
-        {% include '@OHMediaBootstrap/_pagination_previous.html.twig' %}
-      </a>
-    </li>
+      <li class="page-item page-item-prev">
+        <a class="page-link" href="{{ _self.href(pagination.previous, options.url_fragment) }}" aria-label="Previous">
+          {% include '@OHMediaBootstrap/_pagination_previous.html.twig' %}
+        </a>
+      </li>
     {% else %}
-    <li class="page-item page-item-prev disabled">
-      <a class="page-link">
-        {% include '@OHMediaBootstrap/_pagination_previous.html.twig' %}
-      </a>
-    </li>
+      <li class="page-item page-item-prev disabled">
+        <a class="page-link">
+          {% include '@OHMediaBootstrap/_pagination_previous.html.twig' %}
+        </a>
+      </li>
     {% endif %}
 
     {% if show_first %}
@@ -47,37 +47,37 @@
     {% endif %}
 
     {% if show_start_truncation %}
-    <li class="page-item page-item-truncate disabled">
-      <a class="page-link" aria-hidden="true">&hellip;</a>
-    </li>
+      <li class="page-item page-item-truncate disabled">
+        <a class="page-link" aria-hidden="true">&hellip;</a>
+      </li>
     {% endif %}
 
     {% for page in buffer_min..buffer_max %}
-    {{ _self.page_item(pagination, page, options.url_fragment) }}
+      {{ _self.page_item(pagination, page, options.url_fragment) }}
     {% endfor %}
 
     {% if show_end_truncation %}
-    <li class="page-item page-item-truncate disabled">
-      <a class="page-link" aria-hidden="true">&hellip;</a>
-    </li>
+      <li class="page-item page-item-truncate disabled">
+        <a class="page-link" aria-hidden="true">&hellip;</a>
+      </li>
     {% endif %}
 
     {% if show_last %}
-    {{ _self.page_item(pagination, pagination.pages, options.url_fragment) }}
+      {{ _self.page_item(pagination, pagination.pages, options.url_fragment) }}
     {% endif %}
 
     {% if pagination.next %}
-    <li class="page-item page-item-next">
-      <a class="page-link" href="{{ _self.href(pagination.next, options.url_fragment) }}" aria-label="Next">
-        {% include '@OHMediaBootstrap/_pagination_next.html.twig' %}
-      </a>
-    </li>
+      <li class="page-item page-item-next">
+        <a class="page-link" href="{{ _self.href(pagination.next, options.url_fragment) }}" aria-label="Next">
+          {% include '@OHMediaBootstrap/_pagination_next.html.twig' %}
+        </a>
+      </li>
     {% else %}
-    <li class="page-item page-item-next disabled">
-      <a class="page-link">
-        {% include '@OHMediaBootstrap/_pagination_next.html.twig' %}
-      </a>
-    </li>
+      <li class="page-item page-item-next disabled">
+        <a class="page-link">
+          {% include '@OHMediaBootstrap/_pagination_next.html.twig' %}
+        </a>
+      </li>
     {% endif %}
   </ul>
 </nav>
