@@ -1,26 +1,10 @@
 services:
-    OHMedia\BootstrapBundle\Twig\BadgeExtension:
-        tags: ["twig.extension"]
-
-    OHMedia\BootstrapBundle\Twig\AccordionExtension:
-        tags: ["twig.extension"]
-
-    OHMedia\BootstrapBundle\Twig\FlashExtension:
-        tags: ["twig.extension"]
-
-    OHMedia\BootstrapBundle\Twig\BreadcrumbsExtension:
+    _defaults:
         autowire: true
-        tags: ["twig.extension"]
+        autoconfigure: true
 
-    OHMedia\BootstrapBundle\Twig\IconExtension:
-        tags: ["twig.extension"]
-
-    OHMedia\BootstrapBundle\Twig\NavExtension:
-        autowire: true
-        tags: ["twig.extension"]
-
-    OHMedia\BootstrapBundle\Twig\PaginationExtension:
-        tags: ["twig.extension"]
-
-    OHMedia\BootstrapBundle\Service\Paginator:
-        autowire: true
+    OHMedia\BootstrapBundle\:
+        resource: '../src/'
+        exclude:
+            - '../src/Entity/'
+            - '../src/OHMediaBootstrapBundle.php'
