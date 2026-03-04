@@ -54,8 +54,8 @@ class NavExtension extends AbstractExtension
         } elseif ($item instanceof NavLink) {
             $request = $this->requestStack->getCurrentRequest();
 
-            $currentRoute = $request->get('_route', '');
-            $currentRouteParams = $request->get('_route_params', []);
+            $currentRoute = $request->attributes->get('_route', '');
+            $currentRouteParams = $request->attributes->get('_route_params', []);
 
             $path = $this->urlGenerator->generate($item->getRoute(), $item->getRouteParams());
 
